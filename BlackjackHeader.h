@@ -1,0 +1,7 @@
+#ifndef BLACKJACK_CLASS
+#define BLACKJACK_CLASS
+
+
+
+#endif BLACKJACK_CLASS
+
