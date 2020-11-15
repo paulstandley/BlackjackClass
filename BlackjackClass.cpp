@@ -151,10 +151,37 @@ public:
     }
 };
 
+class Deck
+{
+public:
+    using array_type = std::array<Card, 52>;
+    using index_type = array_type::size_type;
+
+private:
+    array_type m_deck{};
+    index_type m_cardIndex{ 0 };
+
+public:
+    void print() const
+    {
+        for (const auto& card : m_deck)
+        {
+            card.print();
+            std::cout << ' ';
+        }
+        std::cout << '\n';
+    }
+
+};
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //Deck deck;
+    //deck.print();
+
+
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
