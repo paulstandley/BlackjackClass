@@ -182,6 +182,75 @@ public:
         m_cardIndex = 0;
     }
 
+    const Card& dealCard(void)
+    {
+        assert(m_cardIndex < m_deck.size());
+
+        return m_deck[m_cardIndex++];
+    }
+
+    Deck()
+    {
+        index_type card{ 0 };
+
+        auto suits{ static_cast<index_type>(CardSuit::MAX_SUITS) };
+        auto ranks{ static_cast<index_type>(CardRank::MAX_RANKS) };
+
+        for (index_type suit{ 0 }; suit < suits; ++suit)
+        {
+            for (index_type rank{ 0 }; rank < ranks; ++rank)
+            {
+                m_deck[card] = { static_cast<CardRank>(rank),
+                    static_cast<CardSuit>(suit) };
+                ++card;
+            }
+        }
+    }
+};
+
+class Player
+{
+private:
+    int m_score{};
+
+public:
+    void drawCard(Deck& deck)
+    {
+        m_score += deck.dealCard().value();
+    }
+
+    int score() const
+    {
+        return m_score;
+    }
+
+    bool isBust() const
+    {
+        return (m_score > maximumScore);
+    }
+
+    bool playerWantsHit()
+    {
+        while (true)
+        {
+            std::cout << "(h) to hit, or (s) to stand: ";
+
+            char ch{};
+            std::cin >> ch;
+
+            switch (ch)
+            {
+            case 'h':
+                return true;
+            case 's':
+                return false;
+            default:
+                return false;
+                break;
+            }
+        }
+    }
+
 };
 
 
