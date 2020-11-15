@@ -172,6 +172,16 @@ public:
         std::cout << '\n';
     }
 
+    void shuffle()
+    {
+        static std::mt19937 
+            mt{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+
+        std::shuffle(m_deck.begin(), m_deck.end(), mt);
+
+        m_cardIndex = 0;
+    }
+
 };
 
 
